@@ -102,7 +102,7 @@ const NavbarModal = () => {
             focused={guestFocused}
             label="guests"
             placeholder="Add guests"
-            value={guests + ' guests'}
+            value={guests === 0 ? '' : `${guests} guests`}
           />
           <button className="search-btn">
             <i className="material-icons">search</i>

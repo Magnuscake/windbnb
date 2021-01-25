@@ -13,31 +13,22 @@ export const Wrapper = styled.div`
   }
 
   .input-container {
-    width: 370px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-evenly;
+    width: 390px;
+    display: grid;
+    grid-template-columns: 50% 35% 15%;
     border-radius: 15px;
     box-shadow: 0px 0px 3px 0px rgba(122, 122, 122, 0.6);
 
-    .divider {
-      width: 1px;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.24);
-    }
-
-    &__location {
-      margin: auto;
-      flex-grow: 1;
-    }
-
-    &__guests {
-      margin: auto;
-      width: 140px;
-      color: rgba(0, 0, 0, 0.24);
+    &__input {
+      background: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 15px 0 0 15px;
     }
 
     &__search-icon {
+      color: #ff5a60;
       margin: auto;
       width: 28px;
     }

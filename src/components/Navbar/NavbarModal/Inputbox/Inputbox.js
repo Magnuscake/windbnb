@@ -1,7 +1,8 @@
-import React, { useState, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const InputContainer = styled.div`
+  height: inherit;
   border: ${({ isFocused }) => (isFocused ? `1px solid #000` : ``)};
   background: #fff;
   position: relative;
@@ -18,6 +19,7 @@ const Input = styled.input`
   padding: 17px 0 0;
   border: none;
   font-size: 1rem;
+  box-shadow: none;
 `;
 
 const Label = styled.label`
@@ -35,7 +37,7 @@ const Inputbox = ({ label, focused, placeholder, value }, ref) => {
         <Label>{label}</Label>
         <Input
           type="text"
-          placeholder={placeholder ? placeholder : ''}
+          placeholder={placeholder}
           value={value ? value : ''}
           readOnly
         />
