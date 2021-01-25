@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  .subtitle {
+    font-weight: 300;
+    font-size: 0.8rem;
+  }
+
   .counter-container {
     margin-top: 0.7rem;
 
@@ -15,6 +20,12 @@ export const Wrapper = styled.div`
 export const Btn = styled.button`
   width: 30px;
   height: 30px;
-  border: 1px solid #fff;
-  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+
+  i {
+    position: relative;
+    top: 2px;
+  }
 `;

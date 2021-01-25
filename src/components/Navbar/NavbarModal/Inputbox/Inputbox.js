@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import styled from 'styled-components';
 
 const InputContainer = styled.div`
-  border: ${(props) => (props.isFocused ? `solid 1px #000` : ``)};
+  border: ${({ isFocused }) => (isFocused ? `1px solid #000` : ``)};
   background: #fff;
   position: relative;
-  padding: 0 8px;
+  padding: 0.3rem 1rem;
   box-sizing: border-box;
-  box-shadow: 0px 0px 3px 0px rgba(122, 122, 122, 0.6);
-  border-radius: 12px;
+  border-radius: ${({ isFocused }) => (isFocused ? '14px' : '14px 0 0 14px')};
+  border-right: 1px solid
+    ${({ isFocused }) => (!isFocused ? 'rgba(0, 0, 0, 0.1)' : '#000')};
 `;
 
 const Input = styled.input`
   width: 100%;
-  height: 2rem;
+  height: 3rem;
   padding: 17px 0 0;
   border: none;
-  outline: 0;
+  font-size: 1rem;
 `;
 
 const Label = styled.label`
-  height: 10px;
-  margin: 0 10px;
+  height: 17px;
   position: absolute;
+  font-weight: 500;
   font-size: 12px;
+  text-transform: uppercase;
 `;
 
-const Inputbox = () => {
-  const [isFocused, setIsFocused] = useState(false);
-
+const Inputbox = ({ label, focused, placeholder, value }, ref) => {
   return (
-    <InputContainer isFocused={isFocused}>
-      <Label>Location</Label>
-      <Input
-        type="text"
-        readOnly
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-      />
-    </InputContainer>
+    <>
+      <InputContainer ref={ref} isFocused={focused}>
+        <Label>{label}</Label>
+        <Input
+          type="text"
+          placeholder={placeholder ? placeholder : ''}
+          value={value ? value : ''}
+          readOnly
+        />
+      </InputContainer>
+    </>
   );
 };
 
-export default Inputbox;
+const forwardInputbox = forwardRef(Inputbox);
+
+export default forwardInputbox;

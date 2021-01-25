@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Wrapper, Btn } from './styles';
 
-const GuestCountToggle = ({ title, subtitle }) => {
-  const [count, setCount] = useState(0);
+const GuestCountToggle = ({
+  title,
+  subtitle,
+  incrementCount,
+  decrementCount,
+  count,
+}) => {
+  const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
 
   return (
     <Wrapper>
-      <p className="title">{title}</p>
-      <p className="subtitle">{subtitle}</p>
+      <p className="title">{capitalizeFirstLetter(title)}</p>
+      <p className="subtitle">{capitalizeFirstLetter(subtitle)}</p>
       <div className="counter-container">
-        <Btn onClick={() => setCount(count + 1)}>
+        <Btn onClick={incrementCount}>
           <i className="material-icons">add</i>
         </Btn>
         <span className="counter-container--counter">{count}</span>
-        <Btn onClick={() => (count === 0 ? count : setCount(count - 1))}>
+        <Btn onClick={decrementCount}>
           <i className="material-icons">remove</i>
         </Btn>
       </div>

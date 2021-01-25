@@ -1,45 +1,46 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import MagnifyIcon from 'mdi-react/MagnifyIcon';
 
 import NavbarModal from './NavbarModal/NavbarModal';
 import { Wrapper } from './styles';
+import { GlobalContext } from '../../context/GlobalState';
+
 import logo from '../../assets/logo.png';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(undefined);
+  const { closeModal, toggleModalOpen, open } = useContext(GlobalContext);
 
-  const ref = useRef();
+  const node = useRef();
 
   useEffect(() => {
     const onBodyClick = (e) => {
-      if (ref.current.contains(e.target)) {
+      if (node.current.contains(e.target)) {
         return;
       }
-      setIsOpen(false);
+      closeModal();
     };
-    document.body.addEventListener('click', onBodyClick);
+
+    document.addEventListener('click', onBodyClick);
 
     return () => {
-      document.body.removeEventListener('click', onBodyClick);
+      document.removeEventListener('click', onBodyClick);
     };
   }, []);
 
   return (
-    <>
-      <Wrapper ref={ref}>
-        <img className="logo" src={logo} alt="windbnb" />
-        <div className="input-container" onClick={() => setIsOpen(!isOpen)}>
-          <div className="input-container__location">Location</div>
-          <div className="divider"></div>
-          <div className="input-container__guests">Add guests</div>
-          <div className="divider"></div>
-          <div className="input-container__search-icon">
-            <MagnifyIcon />
-          </div>
+    <Wrapper ref={node}>
+      <img className="logo" src={logo} alt="windbnb" />
+      <div className="input-container" onClick={toggleModalOpen}>
+        <div className="input-container__location">Location</div>
+        <div className="divider"></div>
+        <div className="input-container__guests">Add guests</div>
+        <div className="divider"></div>
+        <div className="input-container__search-icon">
+          <MagnifyIcon />
         </div>
-      </Wrapper>
-      <NavbarModal displayModal={isOpen} />
-    </>
+      </div>
+      {open ? <NavbarModal /> : ''}
+    </Wrapper>
   );
 };
 
