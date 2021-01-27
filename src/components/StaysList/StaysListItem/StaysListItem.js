@@ -30,6 +30,7 @@ const Container = styled.div`
     &__type {
       flex-grow: 2;
       padding: 0 0.6rem;
+      color: #707070;
     }
 
     &__rating {
