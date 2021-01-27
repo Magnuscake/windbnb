@@ -10,8 +10,8 @@ const StaysList = () => {
 
   return (
     <Wrapper>
-      {stays.map((stay) => (
-        <li>
+      {stays.map((stay, index) => (
+        <li key={index}>
           <StaysListItem data={stay} />
         </li>
       ))}
