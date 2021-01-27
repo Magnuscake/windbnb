@@ -31,7 +31,7 @@ const Navbar = () => {
     return () => {
       document.removeEventListener('click', onBodyClick);
     };
-  }, []);
+  }, [closeModal]);
 
   return (
     <Wrapper ref={node}>
