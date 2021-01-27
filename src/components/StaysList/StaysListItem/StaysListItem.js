@@ -1,10 +1,47 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Container = styled.div`
+  width: 100%;
+
   img {
-    max-width: 23rem;
+    width: 100%;
+    height: 240px;
+    margin-bottom: 4px;
     border-radius: 15px;
+    object-fit: cover;
+  }
+
+  .stay-info {
+    width: 100%;
+    margin: 0.2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+
+    &__superhost {
+      border: 1px solid #000;
+      border-radius: 20px;
+      padding: 3px 11px;
+      font-size: 0.8em;
+    }
+
+    &__type {
+      flex-grow: 2;
+      padding: 0 0.6rem;
+    }
+
+    &__rating {
+      display: grid;
+      place-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+
+      i {
+        color: #ff5a60;
+      }
+    }
   }
 
   .title {
@@ -13,13 +50,27 @@ const Wrapper = styled.div`
 `;
 
 const StaysListItem = ({ data }) => {
-  const { photo, title } = data;
+  const { photo, superHost, title, type, beds, rating } = data;
 
   return (
-    <Wrapper>
+    <Container>
       <img src={photo} alt={title} />
+      <div className="stay-info">
+        {superHost ? (
+          <div className="stay-info__superhost">SUPER HOST</div>
+        ) : (
+          ''
+        )}
+        <p className="stay-info__type">{`${type}${
+          beds ? '. ' + beds + ' beds' : ''
+        }`}</p>
+        <div className="stay-info__rating">
+          <i className="material-icons">star</i>
+          <span>{rating}</span>
+        </div>
+      </div>
       <p className="title">{title}</p>
-    </Wrapper>
+    </Container>
   );
 };
 

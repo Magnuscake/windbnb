@@ -8,11 +8,12 @@ import { GlobalContext } from '../../../context/GlobalState';
 
 const ModalContent = styled.div`
   display: ${({ displayModal }) => (displayModal ? 'block' : 'none')};
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 400px;
   width: 100%;
+  z-index: 5;
   background: #fff;
 
   .modal-form-wrapper {
@@ -53,9 +54,20 @@ const ModalContent = styled.div`
 `;
 
 const NavbarModal = () => {
-  const { open, selectedLocation, guests } = useContext(GlobalContext);
+  const {
+    open,
+    selectedLocation,
+    guests,
+    filterStays,
+    closeModal,
+  } = useContext(GlobalContext);
 
-  console.log(guests);
+  /*
+   * Determine which input box has been selected.
+   * Each time an input box has been clicked, state
+   * for clicked input box will be set to true meanwhile
+   * the other will be set to false
+   **/
   const [locationFocused, setLocationFocused] = useState(true);
   const [guestFocused, setGuestFocused] = useState(false);
 
@@ -86,10 +98,16 @@ const NavbarModal = () => {
     };
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    filterStays(selectedLocation, guests);
+    closeModal();
+  };
+
   return (
     <ModalContent displayModal={open}>
       <div className="modal-form-wrapper">
-        <form className="modal-form">
+        <form className="modal-form" onSubmit={handleSubmit}>
           <Inputbox
             ref={locationRef}
             focused={locationFocused}

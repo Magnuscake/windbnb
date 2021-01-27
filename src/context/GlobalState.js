@@ -21,17 +21,15 @@ export const GlobalProvider = ({ children }) => {
   // store the list of unique locations
   const [locationList, setLocationList] = useState([]);
 
-  // show or hide the model component info (location, guests)
-  const [showLocations, setShowLocations] = useState(false);
-  const [showGuests, setShowGuests] = useState(false);
-
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   const guests = state.adultCount + state.childrenCount;
 
   useEffect(() => {
     setStays(data);
+  }, []);
 
+  useEffect(() => {
     setLocationList([
       ...new Set(stays.map((stay) => `${stay.city}, ${stay.country}`)),
     ]);
@@ -43,18 +41,14 @@ export const GlobalProvider = ({ children }) => {
         `${stay.city}, ${stay.country}` === location && stay.maxGuests >= guests
     );
 
+    console.log(location?.length === 0);
+
     if (location?.length === 0) {
-      // reset stays
       setStays(data);
     } else {
       setStays(filteredStays);
     }
-  };
-
-  const updateShowList = (list) => {
-    list === 'location' ? setShowLocations(true) : setShowLocations(false);
-
-    list === 'guests' ? setShowGuests(true) : setShowGuests(false);
+    console.log(filteredStays);
   };
 
   // Actions
@@ -113,7 +107,6 @@ export const GlobalProvider = ({ children }) => {
         guests,
         locationList,
         updateSelectedLocation,
-        updateShowList,
         toggleModalOpen,
         closeModal,
         incrementAdult,

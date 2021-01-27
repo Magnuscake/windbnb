@@ -8,7 +8,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    overflow-y: ${({ open }) => (open ? 'hidden' : 'scroll')};
     font-family: 'Noto Sans JP', sans-serif;
   }
 `;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Navbar from '../Navbar/Navbar';
 import StaysList from '../StaysList/StaysList';
+import Footer from '../Footer/Footer';
 
 import { GlobalContext } from '../../context/GlobalState';
 import GlobalStyle, { Overlay } from './globalStyles';
@@ -22,6 +23,7 @@ const App = () => {
         <Navbar />
         <StaysList />
       </Container>
+      <Footer />
     </>
   );
 };
