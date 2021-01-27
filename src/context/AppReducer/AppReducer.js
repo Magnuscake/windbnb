@@ -1,4 +1,4 @@
-export default (state, action) => {
+const AppReducer = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_MODAL':
       return {
@@ -30,7 +30,7 @@ export default (state, action) => {
         ...state,
         childrenCount: state.childrenCount + 1,
       };
-    case 'DECREMENT_ADULT_COUNT':
+    case 'DECREMENT_CHILDREN_COUNT':
       return {
         ...state,
         childrenCount: state.childrenCount > 0 ? state.childrenCount - 1 : 0,
@@ -39,3 +39,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default AppReducer;
