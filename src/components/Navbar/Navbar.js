@@ -8,13 +8,9 @@ import { GlobalContext } from '../../context/GlobalState';
 import logo from '../../assets/logo.png';
 
 const Navbar = () => {
-  const {
-    closeModal,
-    toggleModalOpen,
-    open,
-    selectedLocation,
-    guests,
-  } = useContext(GlobalContext);
+  const { closeModal, toggleModalOpen, selectedLocation, guests } = useContext(
+    GlobalContext
+  );
 
   const node = useRef();
 
