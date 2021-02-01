@@ -27,28 +27,23 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     setStays(data);
+
+    setLocationList([
+      ...new Set(data.map((stay) => `${stay.city}, ${stay.country}`)),
+    ]);
   }, []);
 
-  useEffect(() => {
-    setLocationList([
-      ...new Set(stays.map((stay) => `${stay.city}, ${stay.country}`)),
-    ]);
-  }, [stays]);
-
   const filterStays = (location, guests) => {
-    const filteredStays = stays.filter(
+    const filteredStays = data.filter(
       (stay) =>
         `${stay.city}, ${stay.country}` === location && stay.maxGuests >= guests
     );
-
-    console.log(location?.length === 0);
 
     if (location?.length === 0) {
       setStays(data);
     } else {
       setStays(filteredStays);
     }
-    console.log(filteredStays);
   };
 
   // Actions
