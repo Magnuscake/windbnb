@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
       padding: 0.8rem;
       border-right: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 15px 0 0 15px;
+      outline: none;
     }
 
     &__search-icon {

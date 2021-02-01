@@ -7,14 +7,14 @@ import GuestCount from './GuestCount/GuestCount';
 import { GlobalContext } from '../../../context/GlobalState';
 
 const ModalContent = styled.div`
-  display: ${({ displayModal }) => (displayModal ? 'block' : 'none')};
   position: fixed;
-  top: 0;
+  top: ${({ displayModal }) => (displayModal ? '0' : '-450px')};
   left: 0;
   height: 400px;
   width: 100%;
   z-index: 5;
   background: #fff;
+  transition: all 200ms;
 
   .modal-form-wrapper {
     width: 90%;

@@ -55,7 +55,7 @@ const Navbar = () => {
           <MagnifyIcon />
         </div>
       </div>
-      {open ? <NavbarModal /> : ''}
+      <NavbarModal />
     </Wrapper>
   );
 };

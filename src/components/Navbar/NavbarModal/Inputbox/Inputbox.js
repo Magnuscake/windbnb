@@ -20,6 +20,7 @@ const Input = styled.input`
   border: none;
   font-size: 1rem;
   box-shadow: none;
+  outline: none;
 `;
 
 const Label = styled.label`
